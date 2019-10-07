@@ -15,27 +15,31 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
     <body>
-            <nav >
-         <div class="nav-wrapper blue darken-4">
-            <div class="container">
-               <a href="/" class="brand-logo">Django Blog</a>
-               <ul id="nav-mobile" class="right hide-on-med-and-down">
-                  <li><a href="/">Home</a></li>
-                  <li><a href="/about">About</a></li>
-                  <li><a href="{% url 'login' %}">Contact</a></li>
-               </ul>
-            </div>
-         </div>
-      </nav>
+        <nav >
+            <div class="nav-wrapper blue darken-4">
+                <div class="container">
+                 <a href="/" class="brand-logo">Django Blog</a>
+                 <ul id="nav-mobile" class="right hide-on-med-and-down">
+                     <li><a href="/">Home</a></li>
+                     <li><a href="/about">About</a></li>
+                     <li><a href="/contact">Contact</a></li>
+                      {% if request.user.is_authenticated %}
+                    <li><a href="/logout">Logout</a></li>
 
-
-        <div class="content container">
-            <div class="row">
-                <div class="col-md-12">
-                {% block content %}
-                    {% endblock %}
+                    {% else %}
+                     <li><a href="/register">Register</a></li>
+                     <li><a href="/login">Login</a></li>
+                    {% endif %}
+                 </ul>
                 </div>
             </div>
-        </div>
+        </nav>
+
+        {% block content %}
+            {% endblock %}
+
+     <footer class="py-3 bg-grey">
+            <p class="m-0 text-dark text-center ">Copyright &copy; ISSAKHA</p>
+     </footer>
     </body>
 </html>

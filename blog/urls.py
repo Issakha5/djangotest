@@ -15,9 +15,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.contrib.auth import views as auth_view
+from . views import register
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('blog1.urls')),
+# Login
+	path('login/', auth_view.LoginView.as_view(), name='login'),
+	# Logout
+	path('logout/', auth_view.LogoutView.as_view(), name='logout'),
+	# Register url
+    path('register/', register, name="register"),
     path('contact/', include('django.contrib.auth.urls')),
 ]
